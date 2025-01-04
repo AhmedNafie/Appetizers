@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - AppetizerResponse
-struct AppetizerResponse {
+struct AppetizerResponse: Decodable {
     let request: [Appetizer]
 }
 
