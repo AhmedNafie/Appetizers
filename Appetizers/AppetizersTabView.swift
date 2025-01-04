@@ -26,6 +26,7 @@ struct AppetizersTabView: View {
                     Text("Order")
                 }
         }
+        .tint(.primaryGreen)
     }
 }
 
