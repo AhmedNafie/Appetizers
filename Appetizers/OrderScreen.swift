@@ -1,19 +1,18 @@
 //
-//  AccountScreen 2.swift
+//  OrderScreen.swift
 //  Appetizers
 //
 //  Created by Ahmed Nafie on 04/01/2025.
 //
 
-
 import SwiftUI
 
-struct AccountScreen: View {
+struct OrderScreen: View {
     var body: some View {
-            Text("Hello, world!")
+            Text("Order Screen")
     }
 }
 
 #Preview {
-    AccountScreen()
+    OrderScreen()
 }
