@@ -13,7 +13,7 @@ struct AppetizerResponse {
 }
 
 // MARK: - Appetizer
-struct Appetizer: Decodable {
+struct Appetizer: Decodable, Identifiable {
     let protein: Int
     let calories: Int
     let price: Double

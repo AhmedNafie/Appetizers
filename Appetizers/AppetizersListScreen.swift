@@ -5,14 +5,14 @@
 //  Created by Ahmed Nafie on 04/01/2025.
 //
 
-
 import SwiftUI
 
 struct AppetizersListScreen: View {
     var body: some View {
         NavigationView {
-            Text("Appetizers List Screen")
-                .navigationTitle("🍟 Appetizers")
+            List(MockData.sampleAppetizers, id: \.id) { appetizer in
+                AppetizersListCellView(appetizer: appetizer)            }
+            .navigationTitle("🍟 Appetizers")
         }
     }
 }
@@ -20,3 +20,4 @@ struct AppetizersListScreen: View {
 #Preview {
     AppetizersListScreen()
 }
+
