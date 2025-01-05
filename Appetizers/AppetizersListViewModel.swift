@@ -6,17 +6,28 @@
 //
 
 import Foundation
-final class AppetizersListViewModel: ObservableObject {
-    @Published  var appetizers: [Appetizer] = []
 
-    func getAppetizers()  {
+final class AppetizersListViewModel: ObservableObject {
+    @Published var appetizers: [Appetizer] = []
+    @Published var alertItem: AlertItem?
+
+    func getAppetizers() {
         NetworkManager.shared.getAppetizers { result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 switch result {
-                case .success(let appetizers):
-                    self.appetizers = appetizers
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    case .success(let appetizers):
+                        self.appetizers = appetizers
+                    case .failure(let error):
+                        switch error {
+                            case .invalidURL:
+                                alertItem = AlertContext.invalidURL
+                            case .invalidResponse:
+                                alertItem = AlertContext.invalidResponse
+                            case .invalidData:
+                                alertItem = AlertContext.invalidData
+                            case .unableToComplete:
+                                alertItem = AlertContext.unableToComplete
+                        }
                 }
             }
         }
