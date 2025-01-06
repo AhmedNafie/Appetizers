@@ -16,6 +16,16 @@ struct AppetizerDetailsScreen: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300,height: 225)
+            
+            VStack {
+                Text(appetizer.name)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                Text(appetizer.description)
+                    .multilineTextAlignment(.center)
+                    .font(.body)
+                    .padding()
+            }
         }
         .frame(width: 300,height: 525)
         .background(Color(.systemBackground))
