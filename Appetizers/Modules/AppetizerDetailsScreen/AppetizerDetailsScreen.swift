@@ -62,6 +62,21 @@ struct AppetizerDetailsScreen: View {
                     }
                 }
             }
+            
+            Spacer()
+            
+            Button {
+                print("Test")
+            } label: {
+                Text("$\(appetizer.price,specifier: "%.2f") - Add to Order")
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .frame(width: 260, height: 50)
+                    .foregroundStyle(.white)
+                    .background(.primaryGreen)
+                    .cornerRadius(10)
+            }
+            .padding(.bottom, 30)
         }
         .frame(width: 300, height: 525)
         .background(Color(.systemBackground))
