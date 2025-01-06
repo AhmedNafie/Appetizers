@@ -29,5 +29,5 @@ struct AppetizersListCellView: View {
 }
 
 #Preview {
-    AppetizersListCellView(appetizer: MockData.sampleAppetizer)
+    AppetizersListCellView(appetizer: Appetizer.sampleAppetizer)
 }

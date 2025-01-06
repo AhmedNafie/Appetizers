@@ -22,7 +22,6 @@ final class ImageLoader: ObservableObject {
 
 struct RemoteImage: View {
     var image: Image?
-    
     var body: some View {
         image?.resizable() ?? Image("food-placeholder").resizable()
     }
