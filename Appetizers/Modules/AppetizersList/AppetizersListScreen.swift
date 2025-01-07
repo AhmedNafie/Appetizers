@@ -21,6 +21,7 @@ struct AppetizersListScreen: View {
                         }
                 }
                 .navigationTitle("🍟 Appetizers")
+                .disabled(isShowingDetail)
             }
             .onAppear {
                 viewModel.getAppetizers()
