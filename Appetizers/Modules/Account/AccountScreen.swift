@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct AccountScreen: View {
-    @State var firstName = ""
-    @State var lastName = ""
-    @State var email = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
+    @State private var email = ""
+    @State private var birthdate = Date()
 
     var body: some View {
         NavigationView {
@@ -22,6 +23,10 @@ struct AccountScreen: View {
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                    
+                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+                        .tint(.primaryGreen)
+
                 }
             }
                 .navigationTitle("🥷🏻 Account")
