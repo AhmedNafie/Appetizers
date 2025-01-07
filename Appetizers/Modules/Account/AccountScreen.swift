@@ -25,13 +25,11 @@ struct AccountScreen: View {
                         .autocorrectionDisabled()
                     
                     DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
-                        .tint(.primaryGreen)
-                    
+                    //button and date picker have primaryGreen tint cuz they are part of the TabBar
                     Button {
                         print("Saved")
                     } label: {
                         Text("Save changes")
-                            .tint(.primaryGreen)
                     }
                 }
             }
