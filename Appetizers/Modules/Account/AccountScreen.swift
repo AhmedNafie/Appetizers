@@ -12,6 +12,8 @@ struct AccountScreen: View {
     @State private var lastName = ""
     @State private var email = ""
     @State private var birthdate = Date()
+    @State private var extraNapkins = false
+    @State private var frequentRefills = false
 
     var body: some View {
         NavigationView {
@@ -32,6 +34,13 @@ struct AccountScreen: View {
                         Text("Save changes")
                     }
                 }
+                
+                Section("Requests") {
+                    Toggle("Extra Napkins", isOn: $extraNapkins)
+                    Toggle("Frequent Refills", isOn: $frequentRefills)
+                }
+                .tint(.primaryGreen)
+
             }
                 .navigationTitle("🥷🏻 Account")
         }
