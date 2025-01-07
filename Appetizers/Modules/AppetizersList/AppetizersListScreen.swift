@@ -9,17 +9,27 @@ import SwiftUI
 
 struct AppetizersListScreen: View {
     @StateObject var viewModel: AppetizersListViewModel
+    @State private var isShowingDetail = false
+
     var body: some View {
         ZStack {
             NavigationView {
                 List(viewModel.appetizers, id: \.id) { appetizer in
                     AppetizersListCellView(appetizer: appetizer)
+                        .onTapGesture {
+                            isShowingDetail = true
+                        }
                 }
                 .navigationTitle("🍟 Appetizers")
             }
             .onAppear {
                 viewModel.getAppetizers()
             }
+            
+            if isShowingDetail {
+                AppetizerDetailsScreen(appetizer: Appetizer.sampleAppetizer, isShowingDetail: $isShowingDetail)
+            }
+            
             if viewModel.isLoading {
                 ProgressView()
                     .tint(.primaryGreen)

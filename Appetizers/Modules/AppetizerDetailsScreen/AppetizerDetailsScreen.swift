@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppetizerDetailsScreen: View {
     let appetizer: Appetizer
+    @Binding var isShowingDetail: Bool
 
     var body: some View {
         VStack {
@@ -84,12 +85,12 @@ struct AppetizerDetailsScreen: View {
         .shadow(radius: 40)
         .overlay(alignment: .topTrailing) {
             Button {
-                print("X")
+                isShowingDetail = false
             } label: {
                 ZStack {
                     Circle()
                         .frame(width: 30, height: 30)
-                        .foregroundStyle(.pink)
+                        .foregroundStyle(.white)
                         .opacity(0.6)
 
                     // Allowing user action outside of the circle
@@ -105,5 +106,5 @@ struct AppetizerDetailsScreen: View {
 }
 
 #Preview {
-    AppetizerDetailsScreen(appetizer: Appetizer.sampleAppetizer)
+    AppetizerDetailsScreen(appetizer: Appetizer.sampleAppetizer, isShowingDetail: .constant(true))
 }
