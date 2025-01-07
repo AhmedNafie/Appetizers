@@ -13,7 +13,7 @@ struct AppetizerDetailsScreen: View {
 
     var body: some View {
         VStack {
-            AppetizerRemoteImage(urlString: appetizer.imageURL)                
+            AppetizerRemoteImage(urlString: appetizer.imageURL)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 225)
 
@@ -28,78 +28,22 @@ struct AppetizerDetailsScreen: View {
                     .padding()
 
                 HStack(spacing: 40) {
-                    VStack(spacing: 5) {
-                        Text("Calories")
-                            .bold()
-                            .font(.caption)
-
-                        Text("\(appetizer.calories)")
-                            .foregroundStyle(.secondary)
-                            .fontWeight(.semibold)
-                            .italic()
-                    }
-
-                    VStack(spacing: 5) {
-                        Text("Carbs")
-                            .bold()
-                            .font(.caption)
-
-                        Text("\(appetizer.carbs)")
-                            .foregroundStyle(.secondary)
-                            .fontWeight(.semibold)
-                            .italic()
-                    }
-
-                    VStack(spacing: 5) {
-                        Text("Protein")
-                            .bold()
-                            .font(.caption)
-
-                        Text("\(appetizer.protein)")
-                            .foregroundStyle(.secondary)
-                            .fontWeight(.semibold)
-                            .italic()
-                    }
+                    NutritionInfo(title: "Calories", count: appetizer.calories)
+                    NutritionInfo(title: "Carbs", count: appetizer.carbs)
+                    NutritionInfo(title: "Protein", count: appetizer.protein)
                 }
             }
 
             Spacer()
 
-            Button {
-                print("Test")
-            } label: {
-                Text("$\(appetizer.price,specifier: "%.2f") - Add to Order")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .frame(width: 260, height: 50)
-                    .foregroundStyle(.white)
-                    .background(.primaryGreen)
-                    .cornerRadius(10)
-            }
-            .padding(.bottom, 30)
+            OrderButton(title: "$\(appetizer.price,specifier: "%.2f") - Add to Order")
         }
         .frame(width: 300, height: 525)
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 40)
         .overlay(alignment: .topTrailing) {
-            Button {
-                isShowingDetail = false
-            } label: {
-                ZStack {
-                    Circle()
-                        .frame(width: 30, height: 30)
-                        .foregroundStyle(.white)
-                        .opacity(0.6)
-
-                    // Allowing user action outside of the circle
-                    Image(systemName: "xmark")
-                        .imageScale(.small)
-                        .frame(width: 44, height: 44)
-                        .foregroundStyle(.black)
-                }
-            }
-
+            XButton(bool: $isShowingDetail)
         }
     }
 }
@@ -107,3 +51,4 @@ struct AppetizerDetailsScreen: View {
 #Preview {
     AppetizerDetailsScreen(appetizer: Appetizer.sampleAppetizer, isShowingDetail: .constant(true))
 }
+
