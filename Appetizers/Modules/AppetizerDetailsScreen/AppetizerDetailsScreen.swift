@@ -21,7 +21,7 @@ struct AppetizerDetailsScreen: View {
                 Text(appetizer.name)
                     .font(.title2)
                     .fontWeight(.semibold)
-                
+
                 Text(appetizer.description)
                     .multilineTextAlignment(.center)
                     .font(.body)
@@ -38,7 +38,7 @@ struct AppetizerDetailsScreen: View {
                             .fontWeight(.semibold)
                             .italic()
                     }
-                    
+
                     VStack(spacing: 5) {
                         Text("Carbs")
                             .bold()
@@ -49,7 +49,7 @@ struct AppetizerDetailsScreen: View {
                             .fontWeight(.semibold)
                             .italic()
                     }
-                    
+
                     VStack(spacing: 5) {
                         Text("Protein")
                             .bold()
@@ -62,9 +62,9 @@ struct AppetizerDetailsScreen: View {
                     }
                 }
             }
-            
+
             Spacer()
-            
+
             Button {
                 print("Test")
             } label: {
@@ -82,6 +82,25 @@ struct AppetizerDetailsScreen: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(radius: 40)
+        .overlay(alignment: .topTrailing) {
+            Button {
+                print("X")
+            } label: {
+                ZStack {
+                    Circle()
+                        .frame(width: 30, height: 30)
+                        .foregroundStyle(.pink)
+                        .opacity(0.6)
+
+                    // Allowing user action outside of the circle
+                    Image(systemName: "xmark")
+                        .imageScale(.small)
+                        .frame(width: 44, height: 44)
+                        .foregroundStyle(.black)
+                }
+            }
+
+        }
     }
 }
 
