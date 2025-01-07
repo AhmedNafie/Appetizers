@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct AccountScreen: View {
+    @State var firstName = ""
+    @State var lastName = ""
+    @State var email = ""
+
     var body: some View {
         NavigationView {
-            Text("Account Screen")
+            Form {
+                Section("Personal Info") {
+                    TextField("First Name", text: $firstName)
+                    TextField("Last Name", text: $lastName)
+                    TextField("Email", text: $email)
+                        .keyboardType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                }
+            }
                 .navigationTitle("🥷🏻 Account")
         }
     }
