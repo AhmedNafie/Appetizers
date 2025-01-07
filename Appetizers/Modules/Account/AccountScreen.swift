@@ -26,7 +26,13 @@ struct AccountScreen: View {
                     
                     DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
                         .tint(.primaryGreen)
-
+                    
+                    Button {
+                        print("Saved")
+                    } label: {
+                        Text("Save changes")
+                            .tint(.primaryGreen)
+                    }
                 }
             }
                 .navigationTitle("🥷🏻 Account")
