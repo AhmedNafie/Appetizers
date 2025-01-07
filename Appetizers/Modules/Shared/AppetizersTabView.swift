@@ -15,7 +15,7 @@ struct AppetizersTabView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            AccountScreen()
+            AccountScreen(viewModel: AccountViewModel())
                 .tabItem {
                     Image(systemName: "person")
                     Text("Account")

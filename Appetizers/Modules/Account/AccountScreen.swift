@@ -8,25 +8,20 @@
 import SwiftUI
 
 struct AccountScreen: View {
-    @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var email = ""
-    @State private var birthdate = Date()
-    @State private var extraNapkins = false
-    @State private var frequentRefills = false
+    @StateObject var viewModel: AccountViewModel
 
     var body: some View {
         NavigationView {
             Form {
                 Section("Personal Info") {
-                    TextField("First Name", text: $firstName)
-                    TextField("Last Name", text: $lastName)
-                    TextField("Email", text: $email)
+                    TextField("First Name", text: $viewModel.firstName)
+                    TextField("Last Name", text: $viewModel.lastName)
+                    TextField("Email", text: $viewModel.email)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                     
-                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+                    DatePicker("Birthdate", selection: $viewModel.birthdate, displayedComponents: .date)
                     //button and date picker have primaryGreen tint cuz they are part of the TabBar
                     Button {
                         print("Saved")
@@ -36,8 +31,8 @@ struct AccountScreen: View {
                 }
                 
                 Section("Requests") {
-                    Toggle("Extra Napkins", isOn: $extraNapkins)
-                    Toggle("Frequent Refills", isOn: $frequentRefills)
+                    Toggle("Extra Napkins", isOn: $viewModel.extraNapkins)
+                    Toggle("Frequent Refills", isOn: $viewModel.frequentRefills)
                 }
                 .tint(.primaryGreen)
 
@@ -48,5 +43,5 @@ struct AccountScreen: View {
 }
 
 #Preview {
-    AccountScreen()
+    AccountScreen(viewModel: AccountViewModel())
 }
