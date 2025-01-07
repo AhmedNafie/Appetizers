@@ -25,6 +25,7 @@ struct AppetizersListScreen: View {
             .onAppear {
                 viewModel.getAppetizers()
             }
+            .blur(radius: isShowingDetail ? 20 : 0)
             
             if isShowingDetail {
                 AppetizerDetailsScreen(appetizer: Appetizer.sampleAppetizer, isShowingDetail: $isShowingDetail)
