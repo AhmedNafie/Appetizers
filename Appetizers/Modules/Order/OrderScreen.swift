@@ -11,18 +11,24 @@ struct OrderScreen: View {
     @State private var orderItems = Appetizer.orderAppetizers
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    ForEach(Appetizer.orderAppetizers) { appetizer in
-                        AppetizersListCellView(appetizer: appetizer)
+            ZStack {
+                VStack {
+                    List {
+                        ForEach(orderItems) { appetizer in
+                            AppetizersListCellView(appetizer: appetizer)
+                        }
+                        .onDelete(perform: deleteItems)
                     }
-                    .onDelete(perform: deleteItems)
+                    .listStyle(PlainListStyle())
+                    
+                    OrderButton(title: "$99.99 - Place Order")
                 }
-                .listStyle(PlainListStyle())
-                
-                OrderButton(title: "$99.99 - Place Order")
-            }
                 .navigationTitle("🗒️ Orders")
+
+                if orderItems.isEmpty {
+                    EmptyOrderScreen()
+                }
+            }
         }
     }
     
