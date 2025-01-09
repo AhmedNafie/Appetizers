@@ -5,9 +5,11 @@
 //  Created by Ahmed Nafie on 07/01/2025.
 //
 
-import Foundation
+import SwiftUI
 
 final class AccountViewModel: ObservableObject {
+    
+    @AppStorage("user") private var userData: Data?
     @Published var user = User()
     @Published var alertItem: AlertItem?
     
@@ -27,7 +29,13 @@ final class AccountViewModel: ObservableObject {
     
     func saveChanges() {
         guard isValidForm else { return }
-        print("Changes saved!")
-   }
+        do {
+            let data = try JSONEncoder().encode(user)
+            userData = data
+            alertItem = AlertContext.userSaveSuccess
+        } catch {
+            alertItem = AlertContext.invalidUserData
+        }
+    }
     
 }
