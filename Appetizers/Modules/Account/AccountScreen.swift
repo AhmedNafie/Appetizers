@@ -14,14 +14,14 @@ struct AccountScreen: View {
         NavigationView {
             Form {
                 Section("Personal Info") {
-                    TextField("First Name", text: $viewModel.firstName)
-                    TextField("Last Name", text: $viewModel.lastName)
-                    TextField("Email", text: $viewModel.email)
+                    TextField("First Name", text: $viewModel.user.firstName)
+                    TextField("Last Name", text: $viewModel.user.lastName)
+                    TextField("Email", text: $viewModel.user.email)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                     
-                    DatePicker("Birthdate", selection: $viewModel.birthdate, displayedComponents: .date)
+                    DatePicker("Birthdate", selection: $viewModel.user.birthdate, displayedComponents: .date)
                     //button and date picker have primaryGreen tint cuz they are part of the TabBar
                     Button {
                         viewModel.saveChanges()
@@ -31,8 +31,8 @@ struct AccountScreen: View {
                 }
                 
                 Section("Requests") {
-                    Toggle("Extra Napkins", isOn: $viewModel.extraNapkins)
-                    Toggle("Frequent Refills", isOn: $viewModel.frequentRefills)
+                    Toggle("Extra Napkins", isOn: $viewModel.user.extraNapkins)
+                    Toggle("Frequent Refills", isOn: $viewModel.user.frequentRefills)
                 }
                 .tint(.primaryGreen)
 
