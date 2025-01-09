@@ -38,4 +38,12 @@ final class AccountViewModel: ObservableObject {
         }
     }
     
+    func retrieveUser() {
+        guard let userData else { return }
+        do {
+            user = try JSONDecoder().decode(User.self, from: userData)
+        } catch {
+            alertItem = AlertContext.invalidUserData
+        }
+    }
 }
