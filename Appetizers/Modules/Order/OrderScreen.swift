@@ -21,7 +21,7 @@ struct OrderScreen: View {
                     }
                     .listStyle(PlainListStyle())
                     
-                    primaryColorButton(title: "$99.99 - Place Order") {
+                    primaryColorButton(title: "$\(order.totalPrice, specifier: "%.2f") - Place Order") {
                         print("test")
                     }
                 }
