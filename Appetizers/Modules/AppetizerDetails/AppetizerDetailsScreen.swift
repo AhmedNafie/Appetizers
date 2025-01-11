@@ -10,6 +10,7 @@ import SwiftUI
 struct AppetizerDetailsScreen: View {
     let appetizer: Appetizer
     @Binding var isShowingDetail: Bool
+    @EnvironmentObject var order: Order
 
     var body: some View {
         VStack {
@@ -36,7 +37,10 @@ struct AppetizerDetailsScreen: View {
 
             Spacer()
 
-            OrderButton(title: "$\(appetizer.price,specifier: "%.2f") - Add to Order")
+            primaryColorButton(title: "$\(appetizer.price,specifier: "%.2f") - Add to Order") {
+                order.add(appetizer)
+                isShowingDetail = false
+            }
         }
         .frame(width: 300, height: 525)
         .background(Color(.systemBackground))
