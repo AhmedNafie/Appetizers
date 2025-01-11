@@ -9,6 +9,8 @@ import SwiftUI
 
 struct OrderScreen: View {
     @EnvironmentObject var order: Order
+    @State private var showingAlert = false
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,8 +24,16 @@ struct OrderScreen: View {
                     .listStyle(PlainListStyle())
                     
                     primaryColorButton(title: "$\(order.totalPrice, specifier: "%.2f") - Place Order") {
-                        print("test")
+                        order.items.removeAll()
+                        showingAlert = true
                     }
+                    .alert(isPresented: $showingAlert) {
+                                          Alert(
+                                              title: Text("Order Placed"),
+                                              message: Text("Your order has been successfully placed!"),
+                                              dismissButton: .default(Text("OK"))
+                                          )
+                                      }
                 }
                 .navigationTitle("🗒️ Orders")
 
