@@ -1,5 +1,5 @@
 //
-//  OrderButton.swift
+//  primaryColorButton.swift
 //  Appetizers
 //
 //  Created by Ahmed Nafie on 07/01/2025.
@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct OrderButton: View {
+struct primaryColorButton: View {
     // to allow specifier use LocalizedStringKey not a string
     let title: LocalizedStringKey
-    
+    let action: () -> Void  // Add an action closure
+
     var body: some View {
         Button {
-            print("Test")
+            action()
         } label: {
             Text(title)
                 .font(.title3)
@@ -28,5 +29,7 @@ struct OrderButton: View {
 }
 
 #Preview {
-    OrderButton(title: "Test")
+    primaryColorButton(title: "Test") {
+        print("Button tapped!")
+    }
 }
