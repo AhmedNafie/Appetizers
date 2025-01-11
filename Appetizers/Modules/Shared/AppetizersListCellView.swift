@@ -20,6 +20,8 @@ struct AppetizersListCellView: View {
                 Text(appetizer.name)
                     .font(.title2)
                     .fontWeight(.medium)
+                    .lineLimit(2)
+                     .minimumScaleFactor(0.5)
                 Text("$\(appetizer.price,specifier: "%.2f")")
                     .foregroundStyle(.secondary)
                     .fontWeight(.semibold)
