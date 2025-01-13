@@ -20,10 +20,10 @@ struct primaryColorButton: View {
                 .font(.title3)
                 .fontWeight(.semibold)
                 .frame(width: 260, height: 50)
-                .foregroundStyle(.white)
-                .background(.primaryGreen)
                 .cornerRadius(10)
         }
+        .buttonStyle(.bordered)
+        .tint(Color.primaryGreen)
         .padding(.bottom, 30)
     }
 }
