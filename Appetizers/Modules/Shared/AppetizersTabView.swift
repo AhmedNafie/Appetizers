@@ -29,7 +29,6 @@ struct AppetizersTabView: View {
                 }
                 .badge(order.items.count)
         }
-        .tint(.primaryGreen)
     }
 }
 
