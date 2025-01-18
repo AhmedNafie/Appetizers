@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NutritionInfo: View {
     var title: String
-    var count: Int
+    var count: String
     
     var body: some View {
         VStack(spacing: 5) {
@@ -17,7 +17,7 @@ struct NutritionInfo: View {
                 .bold()
                 .font(.caption)
             
-            Text("\(count)")
+            Text(count)
                 .foregroundStyle(.secondary)
                 .fontWeight(.semibold)
                 .italic()
@@ -26,5 +26,5 @@ struct NutritionInfo: View {
 }
 
 #Preview {
-    NutritionInfo(title: "Carbs", count: 46)
+    NutritionInfo(title: "Carbs", count: "46 g")
 }

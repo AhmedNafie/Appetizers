@@ -37,9 +37,9 @@ struct AppetizerDetailsScreen: View {
                     .padding()
 
                 HStack(spacing: 40) {
-                    NutritionInfo(title: "Calories", count: appetizer.calories)
-                    NutritionInfo(title: "Carbs", count: appetizer.carbs)
-                    NutritionInfo(title: "Protein", count: appetizer.protein)
+                    NutritionInfo(title: "Calories", count: "\(appetizer.calories) cal")
+                    NutritionInfo(title: "Carbs", count: "\(appetizer.carbs) g")
+                    NutritionInfo(title: "Protein", count: "\(appetizer.protein) g")
                 }
             }
 
