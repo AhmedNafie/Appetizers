@@ -14,37 +14,22 @@ final class NetworkManager {
     static let appetizersEndpoint = "appetizers"
     private let appetizersURL = baseURL + appetizersEndpoint
     private init() {}
-
-    func getAppetizers(completed: @escaping (Result<[Appetizer], AppetizersError>) -> Void) {
+    
+    func getAppetizers() async throws -> [Appetizer] {
         guard let url = URL(string: appetizersURL) else {
-            completed(.failure(.invalidURL))
-            return
+            throw AppetizersError.invalidURL
         }
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            if error != nil {
-                completed(.failure(.unableToComplete))
-            }
-
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
             do {
                 let decoder = JSONDecoder()
-                let decodedResponse = try decoder.decode(AppetizerResponse.self, from: data)
-                completed(.success(decodedResponse.request))
+                return try decoder.decode(AppetizerResponse.self, from: data).request
             } catch {
-                completed(.failure(.invalidData))
+                throw AppetizersError.invalidData
             }
         }
-        task.resume()
-    }
+    
 
     func downloadImage(fromURLString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: fromURLString)
