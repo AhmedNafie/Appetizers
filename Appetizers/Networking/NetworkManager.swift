@@ -42,7 +42,7 @@ final class NetworkManager {
             return
         }
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            guard let data = data, let image = UIImage(data: data) else {
+            guard let data, let image = UIImage(data: data) else {
                 completed(nil)
                 return
             }
