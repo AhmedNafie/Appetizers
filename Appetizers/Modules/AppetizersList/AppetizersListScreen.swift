@@ -36,6 +36,7 @@ struct AppetizersListScreen: View {
             if viewModel.isLoading {
                 ProgressView()
                     .tint(.primaryGreen)
+                    .scaleEffect(2)
             }
         }
         .alert(item: $viewModel.alertItem) { alertItem in
