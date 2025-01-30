@@ -5,6 +5,7 @@
 //  Created by Ahmed Nafie on 04/01/2025.
 //
 
+import Alamofire
 import UIKit
 
 final class NetworkManager {
@@ -15,17 +16,19 @@ final class NetworkManager {
     private init() {}
     
     func getAppetizers() async throws -> [Appetizer] {
-        guard let url = URL(string: appetizersURL) else {
+        guard URL(string: appetizersURL) != nil else {
             throw AppetizersError.invalidURL
         }
         
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-            do {
-                let decoder = JSONDecoder()
-                return try decoder.decode(AppetizerResponse.self, from: data).request
-            } catch {
-                throw AppetizersError.invalidData
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(appetizersURL).responseDecodable(of: AppetizerResponse.self) { response in
+                switch response.result {
+                case .success(let appetizerResponse):
+                    continuation.resume(returning: appetizerResponse.request)
+                case .failure:
+                    continuation.resume(throwing: AppetizersError.invalidData)
+                }
             }
         }
+    }
 }
