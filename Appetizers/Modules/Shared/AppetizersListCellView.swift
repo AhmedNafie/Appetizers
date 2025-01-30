@@ -6,24 +6,23 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AppetizersListCellView: View {
     let appetizer: Appetizer
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: appetizer.imageURL)) { image in
-                image
+            KFImage(URL(string: appetizer.imageURL))
+                    .placeholder {
+                        Image("food-placeholder") .aspectRatio(contentMode: .fit)
+                            .frame(width: 120, height: 90)
+                            .cornerRadius(8)
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 120, height: 90)
                     .cornerRadius(8)
-            } placeholder: {
-                Image("food-placeholder")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 120, height: 90)
-                    .cornerRadius(8)
-            }
+         
             VStack(alignment: .leading, spacing: 5) {
                 Text(appetizer.name)
                     .font(.title2)

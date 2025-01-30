@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AppetizerDetailsScreen: View {
     let appetizer: Appetizer
@@ -14,18 +15,15 @@ struct AppetizerDetailsScreen: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: appetizer.imageURL)) { image in
-                image
+            KFImage(URL(string: appetizer.imageURL))
+                    .placeholder {
+                        Image("food-placeholder") .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 300, height: 225)
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 300, height: 225)
-            } placeholder: {
-                Image("food-placeholder")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 300, height: 225)
-            }
-            
             VStack {
                 Text(appetizer.name)
                     .font(.title2)
