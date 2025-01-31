@@ -14,21 +14,12 @@ final class NetworkManager {
     static let appetizersEndpoint = "appetizers"
     private let appetizersURL = baseURL + appetizersEndpoint
     private init() {}
-    
+
     func getAppetizers() async throws -> [Appetizer] {
         guard URL(string: appetizersURL) != nil else {
             throw AppetizersError.invalidURL
         }
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            AF.request(appetizersURL).responseDecodable(of: AppetizerResponse.self) { response in
-                switch response.result {
-                case .success(let appetizerResponse):
-                    continuation.resume(returning: appetizerResponse.request)
-                case .failure:
-                    continuation.resume(throwing: AppetizersError.invalidData)
-                }
-            }
-        }
+
+        return try await AF.request(appetizersURL).serializingDecodable(AppetizerResponse.self).value.request
     }
 }
